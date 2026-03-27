@@ -1,6 +1,6 @@
 # 📸 Info Card Generator
 
-**一键将文章、笔记、URL 转换为精美信息卡片的 AI 工作流。**
+**一键将文章、办公文档、笔记转换为精美信息卡片的 AI 工作流。**
 
 ![License](https://img.shields.io/badge/license-MIT-blue.svg)
 ![Node](https://img.shields.io/badge/Node.js-18%2B-green.svg)
@@ -10,7 +10,7 @@
 
 ## ✨ 功能特点
 
-- 📄 **多来源支持**：网页链接、Markdown 文件、纯文本
+- 📄 **多来源支持**：网页链接、办公文档（Word/PPT/PDF）、Markdown 文件、纯文本
 - 🎨 **风格多样**：赛博朋克、极简主义、蓝图设计、玻璃拟态等
 - 📊 **高信息密度**：保留核心要点，避免过度精简
 - 🤖 **AI 驱动**：配合 Claude/Gemini 等 AI 助手使用
@@ -23,6 +23,7 @@
 ### 1. 环境要求
 
 - **Node.js** 18.0 或更高版本
+- **Python** 3.9 或更高版本
 - **npm** 或 **yarn**
 - 一个支持 Workflows 的 AI 代码助手（如 Claude Code, Cursor, Windsurf 等）
 
@@ -38,6 +39,9 @@ npm install
 
 # 安装 Playwright 浏览器内核（用于截图）
 npx playwright install chromium
+
+# 安装 Python 依赖（用于文档解析）
+pip install python-docx python-pptx pdfplumber
 ```
 
 ### 3. 使用方式
@@ -50,6 +54,12 @@ npx playwright install chromium
 /generate-card https://example.com/article
 ```
 
+也可以直接丢一份文档：
+
+```
+/generate-card @报告.docx
+```
+
 或者用自然语言：
 
 ```
@@ -57,7 +67,7 @@ npx playwright install chromium
 ```
 
 AI 会自动：
-1. 抓取文章内容
+1. 读取/解析内容（网页、文档或纯文本）
 2. 提炼核心要点
 3. 生成精美 HTML 卡片
 4. 截图保存为 PNG
@@ -86,6 +96,7 @@ info-card-generator/
 │           └── [card_name].png
 ├── scripts/
 │   ├── capture_card.js         # Playwright 截图脚本
+│   ├── extract_document.py     # 办公文档解析（docx/pptx/pdf → Markdown）
 │   └── html_to_pdf.js          # HTML 转 PDF 脚本（可选）
 ├── templates/
 │   └── basic_card.html         # 基础卡片模板

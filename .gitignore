@@ -24,6 +24,11 @@ Thumbs.db
 playwright-report/
 test-results/
 
+# Credentials / secrets
+.git-credentials-info.md
+*.env
+.env.*
+
 # Temporary files
 *.log
 *.tmp
